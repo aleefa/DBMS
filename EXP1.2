@@ -1,0 +1,38 @@
+                                            1.2 DML COMMANDS 
+                                            ****************
+a) DML COMMANDS-INSERT
+1.Insert values in EMPLOYEE table.
+        
+mysql> insert into EMPLOYEE VALUES(1,'MARIA','KOCHI',1992,12347),(2,'ADAM','MUMBAI',1995,12456),(3,'ROSLIN','BANGLORE',1999,45678);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from EMPLOYEE;
++------+--------+----------+------+----------+
+| SSN  | name   | city     | dob  | adhar_no |
++------+--------+----------+------+----------+
+|    1 | MARIA  | KOCHI    | 1992 |    12347 |
+|    2 | ADAM   | MUMBAI   | 1995 |    12456 |
+|    3 | ROSLIN | BANGLORE | 1999 |    45678 |
++------+--------+----------+------+----------+
+3 rows in set (0.00 sec)
+
+2.Insert values in STUDENT table
+
+mysql> INSERT INTO STUDENT VALUES(1,'ANN',21,'ABC','f'),(2,'PETER',23,'HGJ','m'),(3,'MICHAEL',22,'YHT','m'),(4,'ROSIE',22,'LKJ','f');
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from STUDENT;
++---------+---------+------+---------+--------+
+| roll_no | name    | age  | address | gender |
++---------+---------+------+---------+--------+
+|       1 | ANN     |   21 | ABC     | f      |
+|       2 | PETER   |   23 | HGJ     | m      |
+|       3 | MICHAEL |   22 | YHT     | m      |
+|       4 | ROSIE   |   22 | LKJ     | f      |
++---------+---------+------+---------+--------+
+4 rows in set (0.00 sec)
+
+
+3.Insert values in INVOICE database. 
