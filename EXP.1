@@ -173,3 +173,27 @@ mysql> desc EMPLOYEE;
 
                
 //VERIFIED
+
+ 2. Change the data type of the column ‘DOB’  in year the table EMPLOYEE    
+ 
+ 
+mysql> alter table EMPLOYEE modify dob year;
+Query OK, 0 rows affected (0.51 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc EMPLOYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| SSN      | int(11)     | YES  |     | NULL    |       |
+| emp_id   | int(11)     | YES  |     | NULL    |       |
+| name     | varchar(25) | YES  |     | NULL    |       |
+| city     | varchar(50) | YES  |     | NULL    |       |
+| dob      | year(4)     | YES  |     | NULL    |       |
+| adhar_no | int(11)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+ 3. Delete the column ‘emp_id’ the table EMPLOYEE. 
+ 
+ 
