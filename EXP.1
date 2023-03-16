@@ -1,4 +1,5 @@
- 1.Create a table EMPLOYEE have the following fields (emp_id, name,city,dob,adhar_no)
+a) DDL COMMANDS-CREATE 
+1.Create a table EMPLOYEE have the following fields (emp_id, name,city,dob,adhar_no)
  
 mysql> create table EMPLOYEE(emp_id int,name varchar(25),dob date,adhar_no int);
 Query OK, 0 rows affected (0.25 sec
@@ -146,5 +147,25 @@ mysql> desc invoice_item;
 3 rows in set (0.00 sec)
 
 
+ b.DDL COMMANDS- ALTER & DROP
+     
+     1. Add a column ‘SSN’ at the first position in the table EMPLOYEE
+
+mysql> ALTER TABLE EMPLOYEE ADD SSN INT FIRST;
+Query OK, 0 rows affected (0.35 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc EMPLOYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| SSN      | int(11)     | YES  |     | NULL    |       |
+| emp_id   | int(11)     | YES  |     | NULL    |       |
+| name     | varchar(25) | YES  |     | NULL    |       |
+| city     | varchar(50) | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| adhar_no | int(11)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
 
                
