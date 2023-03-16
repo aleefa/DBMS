@@ -212,4 +212,63 @@ mysql> desc EMPLOYEE;
 5 rows in set (0.00 sec)
 
 4. Add  the constraint unique for columns ‘SSN, ‘adhar_no’ the table EMPLOYEE 
- 
+
+mysql> alter table EMPLOYEE add constraint c3 unique(SSN),add constraint c2 unique(adhar_no);
+Query OK, 0 rows affected (0.24 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc EMPLOYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| SSN      | int(11)     | YES  | UNI | NULL    |       |
+| name     | varchar(25) | YES  |     | NULL    |       |
+| city     | varchar(50) | YES  |     | NULL    |       |
+| dob      | year(4)     | YES  |     | NULL    |       |
+| adhar_no | int(11)     | YES  | UNI | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+5. Delete the NULL constraint of ‘age’ in the STUDENT table. 
+
+mysql> ALTER TABLE STUDENT modify age INT NULL;
+Query OK, 0 rows affected (0.35 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC STUDENT;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int(11)     | NO   | PRI | NULL    |       |
+| name    | varchar(25) | NO   |     | NULL    |       |
+| age     | int(11)     | YES  |     | NULL    |       |
+| address | varchar(25) | YES  |     | NULL    |       |
+| gender  | varchar(20) | YES  |     | m       |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+6. Change the table name EMPLOYEE as PERSON
+     
+mysql> alter table EMPLOYEE rename to PERSON;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc PERSON;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| SSN      | int(11)     | YES  | UNI | NULL    |       |
+| name     | varchar(25) | YES  |     | NULL    |       |
+| city     | varchar(50) | YES  |     | NULL    |       |
+| dob      | year(4)     | YES  |     | NULL    |       |
+| adhar_no | int(11)     | YES  | UNI | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+7. Delete the table EMPLOYEE DUP
+
+mysql> DROP TABLE EMPLOYEE_DUP;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> DESC EMPLOYEE_DUP;
+ERROR 1146 (42S02): Table 'alifa.EMPLOYEE_DUP' doesn't exist
