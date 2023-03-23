@@ -595,20 +595,33 @@ Empty set (0.00 sec)
  6. Delete Invoice details of a particular customer.
  
  
- 
-mysql> delete from Customer  where id=107;  //WRONG
-Query OK, 1 row affected (0.03 sec)
+mysql> SELECT * FROM invoice_master;
++--------+------+------------+
+| inv_id | id   | inv_date   |
++--------+------+------------+
+|     10 |  102 | 2023-10-12 |
+|     13 |  105 | 2023-10-14 |
+|     14 |  106 | 2023-10-14 |
+|     15 |  106 | 2023-10-14 |
+|     16 |  105 | 2023-10-14 |
++--------+------+------------+
+5 rows in set (0.00 sec)
 
-mysql> select * from Customer;
-+-----+--------+-----------+-----------+------------+
-| id  | name   | address   | city      | ph_no      |
-+-----+--------+-----------+-----------+------------+
-| 102 | aleena | cheruthod | mukkam    | 9898765678 |
-| 103 | ramsi  | chelavoor | karanthur | 9879876543 |
-| 105 | aleefa | cmr       | kozhikode | 8769543899 |
-| 106 | basith | feroke    | kozhikode | 8593922345 |
-+-----+--------+-----------+-----------+------------+
-4 rows in set (0.00 sec)
+mysql> delete from invoice_master where id=106;
+Query OK, 2 rows affected (0.04 sec)
+
+mysql> SELECT * FROM invoice_master;
++--------+------+------------+
+| inv_id | id   | inv_date   |
++--------+------+------------+
+|     10 |  102 | 2023-10-12 |
+|     13 |  105 | 2023-10-14 |
+|     16 |  105 | 2023-10-14 |
++--------+------+------------+
+3 rows in set (0.00 sec)
+
+
+ 
 
 
 //DELETE INVOICE ITEM DETAILS OF A CUSTOMER NOT CUSTOMER DETAILS
