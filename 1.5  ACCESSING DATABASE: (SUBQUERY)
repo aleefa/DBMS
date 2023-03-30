@@ -140,9 +140,10 @@ mysql> select * from Product where pid in (select pid from invoice_item where in
 2 rows in set (0.00 sec)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
-7.List the names of all customers who have purchased at least 1 products, make sure that no duplicate names in the result.
+7.List the names of all customers who have purchased at least 2 products, make sure that no duplicate names in the result.
 
-mysql> select distinct name from Customer where id in (select id from invoice_master where inv_id in (select inv_id from invoice_item group by inv_id having count(*)>1));  //WRONG QUERY
+
+mysql>  select distinct name from Customer where id in (select id from invoice_master where inv_id in (select inv_id from invoice_item group by inv_id having count(*)>2));
 +--------+
 | name   |
 +--------+
@@ -150,5 +151,7 @@ mysql> select distinct name from Customer where id in (select id from invoice_ma
 | basith |
 +--------+
 2 rows in set (0.00 sec)
+
+
 
 //RESUBMIT
