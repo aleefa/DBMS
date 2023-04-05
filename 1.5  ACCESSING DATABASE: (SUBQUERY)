@@ -87,7 +87,7 @@ mysql> select pname,price from  Product where pid in(select pid from invoice_ite
 
 3.   List the product names, only include their purchased quantity more than 3.
 
-mysql> select pname from  Product where pid in(select pid from invoice_item where quantity>2);
+mysql> select pname from  Product where pid in(select pid from invoice_item where quantity>2); //WRONG QUERY
 +-----------+
 | pname     |
 +-----------+
@@ -155,3 +155,4 @@ mysql>  select distinct name from Customer where id in (select id from invoice_m
 
 
 //RESUBMIT
+WRONG QUERY, RESUBMIT
