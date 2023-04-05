@@ -85,7 +85,7 @@ mysql> select pname,price from  Product where pid in(select pid from invoice_ite
 5 rows in set (0.00 sec)
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
-3.   List the product names, only include their purchased quantity more than 3.
+3.   List the product names, only include their purchased quantity more than 2
 
 mysql> select pname from  Product where pid in(select pid from invoice_item where quantity>2); //WRONG QUERY
 +-----------+
