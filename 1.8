@@ -1,0 +1,129 @@
+                                             EXPERIMENT NO: 1.8 OPTIMIZING DATABASE:(JOINS)
+                                             **********************************************
+                                             
+                                             
+    
+mysql> SELECT * FROM Customer;
++-----+---------+-----------+-----------+------------+
+| id  | name    | address   | city      | ph_no      |
++-----+---------+-----------+-----------+------------+
+| 102 | aleena  | cheruthod | mukkam    | 9898765678 |
+| 103 | ramsi   | chelavoor | karanthur | 9879876543 |
+| 105 | aleefa  | cmr       | kozhikode | 8769543899 |
+| 106 | basith  | feroke    | kozhikode | 8593922345 |
+| 107 | nileena | irutti    | kannur    | NULL       |
+| 108 | simi    | pulinjod  | kozhikode | 7895897568 |
++-----+---------+-----------+-----------+------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Product;
++-----+-----------+-------+
+| pid | pname     | price |
++-----+-----------+-------+
+|   1 | book      |    46 |
+|   2 | box       |    61 |
+|   3 | soap      |   102 |
+|   4 | cream     |   388 |
+|   5 | pen       |    10 |
+|   6 | chocolate |   102 |
+|   7 | maggie    |    77 |
++-----+-----------+-------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM invoice_master;
++--------+------+------------+
+| inv_id | id   | inv_date   |
++--------+------+------------+
+|     10 |  102 | 2023-10-12 |
+|     11 |  105 | 2023-10-13 |
+|     13 |  105 | 2023-10-14 |
+|     15 |  106 | 2023-10-16 |
+|     16 |  105 | 2023-10-14 |
+|     17 |  102 | 2023-10-19 |
++--------+------+------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM invoice_item;
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|     10 |    1 |        7 |
+|     16 |    4 |       10 |
+|     17 |    6 |       15 |
+|     15 |    7 |        7 |
+|     15 |    1 |        9 |
+|     17 |    2 |        4 |
+|     15 |    1 |        4 |
+|     17 |    7 |        5 |
++--------+------+----------+
+8 rows in set (0.00 sec)
+
+                                       
+                                             
+ 1.List the product name and quantity of invoice items.
+ mysql> SELECT Product.Pname,invoice_item.quantity FROM Product INNER JOIN invoice_item ON Product.Pid=invoice_item.pid;
++-----------+----------+
+| Pname     | quantity |
++-----------+----------+
+| book      |        7 |
+| cream     |       10 |
+| chocolate |       15 |
+| maggie    |        7 |
+| book      |        9 |
+| box       |        4 |
+| book      |        4 |
+| maggie    |        5 |
++-----------+----------+
+8 rows in set (0.02 sec)
+
+ -------------------------------------------------------------------------------------------------------------------------------------------------
+ 2.Display invoice details of the transaction dated ’31-01-2022’.
+ 
+ mysql> select invoice_master.inv_date,invoice_master.id,Customer.name,invoice_item.pid,Product.pname,invoice_item.quantity from invoice_master inner join invoice_item on invoice_master.inv_id=invoice_item.inv_id inner join Product on Product.pid=invoice_item.pid inner join Customer on Customer.id=invoice_master.id where inv_date="2023-10-14";
++------------+------+--------+------+-------+----------+
+| inv_date   | id   | name   | pid  | pname | quantity |
++------------+------+--------+------+-------+----------+
+| 2023-10-14 |  105 | aleefa |    4 | cream |       10 |
++------------+------+--------+------+-------+----------+
+1 row in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+3.Display the customer name, product name, invoice date of purchased item ‘pen’.
+
+mysql> select Customer.name,Product.pname,invoice_master.inv_date from Customer inner join invoice_master on Customer.id=invoice_master.id inner join invoice_item on invoice_master.inv_id=invoice_item.inv_id inner join Product on invoice_item.pid=Product.pid where pname="book";
++--------+-------+------------+
+| name   | pname | inv_date   |
++--------+-------+------------+
+| aleena | book  | 2023-10-12 |
+| basith | book  | 2023-10-16 |
+| basith | book  | 2023-10-16 |
++--------+-------+------------+
+3 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4.Display all customer details and invoice details must include customer has not purchased items.
+
+
+mysql> select name,invoice_master.inv_id,invoice_master.inv_date,Product.pname from Customer left join invoice_master on Customer.id=invoice_master.id left join invoice_item on invoice_master.inv_id=invoice_item.inv_id left join Product on Product.pid=invoice_item.pid;
++---------+--------+------------+-----------+
+| name    | inv_id | inv_date   | pname     |
++---------+--------+------------+-----------+
+| aleena  |     10 | 2023-10-12 | book      |
+| aleefa  |     16 | 2023-10-14 | cream     |
+| aleena  |     17 | 2023-10-19 | chocolate |
+| basith  |     15 | 2023-10-16 | maggie    |
+| basith  |     15 | 2023-10-16 | book      |
+| aleena  |     17 | 2023-10-19 | box       |
+| basith  |     15 | 2023-10-16 | book      |
+| aleena  |     17 | 2023-10-19 | maggie    |
+| aleefa  |     11 | 2023-10-13 | NULL      |
+| aleefa  |     13 | 2023-10-14 | NULL      |
+| ramsi   |   NULL | NULL       | NULL      |
+| nileena |   NULL | NULL       | NULL      |
+| simi    |   NULL | NULL       | NULL      |
++---------+--------+------------+-----------+
+13 rows in set (0.03 sec)
+
+
+
