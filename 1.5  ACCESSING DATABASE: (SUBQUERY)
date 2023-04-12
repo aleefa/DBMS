@@ -156,3 +156,4 @@ mysql>  select distinct name from Customer where id in (select id from invoice_m
 
 //RESUBMIT
 WRONG QUERY, RESUBMIT
+//VERIFIED
