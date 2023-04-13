@@ -110,20 +110,14 @@ mysql> select * from Customer where ph_no is null and city="kannur";
 +-----+---------+---------+--------+-------+
 1 row in set (0.00 sec)
 -----------------------------------------------------------------------------------------------------------------------------------------------------
-4.List the product names if it finds any records in the invoice items table has quantity =3 (use special operators)
+4.List the product names if it finds any records in the invoice items table has quantity =4 (use special operators)
 
-mysql>  select pname from Product where pid in(select pid from invoice_item); //WRONG QUERY
-+-----------+
-| pname     |
-+-----------+
-| book      |
-| box       |
-| cream     |
-| chocolate |
-| maggie    |
-+-----------+
-5 rows in set (0.00 sec)
+mysql>  select pname from Product where pid in(select pid from invoice_item where quantity=4);
++-------+
+| pname |
++-------+
+| box   |
+| book  |
++-------+
+2 rows in set (0.00 sec)
 
-
-
-RESUBMIT
