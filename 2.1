@@ -1,0 +1,103 @@
+                                                      -PL/SQL PROGRAMS- STORED PROCEDURES 
+                                                      ************************************
+                                                      
+                                                      
+  1.Create a procedure to display all tables in the invoice database        
+  
+  mysql> delimiter //
+mysql> create procedure Invoice_tables()
+    -> begin
+    -> select * from Customer;
+    -> select * from Product;
+    -> select * from invoice_item;
+    -> select * from invoice_master;
+    -> end
+    -> //
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> call invoice_tables //
++-----+---------+-----------+-----------+------------+
+| id  | name    | address   | city      | ph_no      |
++-----+---------+-----------+-----------+------------+
+| 102 | aleena  | cheruthod | mukkam    | 9898765678 |
+| 103 | ramsi   | chelavoor | karanthur | 9879876543 |
+| 105 | aleefa  | cmr       | kozhikode | 8769543899 |
+| 106 | basith  | feroke    | kozhikode | 8593922345 |
+| 107 | nileena | irutti    | kannur    | NULL       |
+| 108 | simi    | pulinjod  | kozhikode | 7895897568 |
++-----+---------+-----------+-----------+------------+
+6 rows in set (0.00 sec)
+
++-----+-----------+-------+
+| pid | pname     | price |
++-----+-----------+-------+
+|   1 | book      |    51 |
+|   2 | box       |    66 |
+|   3 | soap      |   107 |
+|   4 | cream     |   393 |
+|   5 | pen       |    15 |
+|   6 | chocolate |   107 |
+|   7 | maggie    |    82 |
++-----+-----------+-------+
+7 rows in set (0.00 sec)
+
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|     10 |    1 |        7 |
+|     16 |    4 |       10 |
+|     17 |    6 |       15 |
+|     15 |    7 |        7 |
+|     15 |    1 |        9 |
+|     17 |    2 |        4 |
+|     15 |    1 |        4 |
+|     17 |    7 |        5 |
++--------+------+----------+
+8 rows in set (0.00 sec)
+
++--------+------+------------+
+| inv_id | id   | inv_date   |
++--------+------+------------+
+|     10 |  102 | 2023-10-12 |
+|     11 |  105 | 2023-10-13 |
+|     13 |  105 | 2023-10-14 |
+|     15 |  106 | 2023-10-16 |
+|     16 |  105 | 2023-10-14 |
+|     17 |  102 | 2023-10-19 |
++--------+------+------------+
+6 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+2.Create a procedure to find greatest of 3 numbers.
+
+mysql> CREATE PROCEDURE GREATEST(A INT,B INT, C INT)
+    -> BEGIN
+    -> IF(A>B) AND (A>C) THEN
+    -> SELECT A AS "GREATEST";
+    -> ELSEIF(B>A) AND (B>C) THEN
+    -> SELECT B AS "GREATEST";
+    -> ELSE
+    -> SELECT C AS "GREATEST";
+    -> END IF;
+    -> END
+    -> //
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call GREATEST(10,20,30) //
++----------+
+| GREATEST |
++----------+
+|       30 |
++----------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+3.Create a procedure to display invoice details of a particular customer.
+
+
+
+                                                      
