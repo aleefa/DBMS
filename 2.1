@@ -99,5 +99,24 @@ Query OK, 0 rows affected (0.00 sec)
 3.Create a procedure to display invoice details of a particular customer.
 
 
+mysql> delimiter //
+
+mysql> create procedure custp2(N varchar(30))begin select Customer.name,invoice_master.*,Product.pname,invoice_item.pid,invoice_item.quantity
+ from invoice_item inner join invoice_master on invoice_master.inv_id=invoice_item.inv_id inner join Product on Product.pid=invoice_item.pid
+inner  join Customer on Customer.id=invoice_master.id where Customer.name=N;end//
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call custp2('aleefa'); //
++--------+--------+------+------------+-------+------+----------+
+| name   | inv_id | id   | inv_date   | pname | pid  | quantity |
++--------+--------+------+------------+-------+------+----------+
+| aleefa |     16 |  105 | 2023-10-14 | cream |    4 |       10 |
++--------+--------+------+------------+-------+------+----------+
+1 row in set (0.04 sec)
+
+Query OK, 0 rows affected (0.04 sec)
+
+
+
 
                                                       
