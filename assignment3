@@ -1,0 +1,145 @@
+                                   Experiment 3: NoSQL-CRUD
+                                   *************************
+                      
+1.Write a MongoDB query to create an INVOICE database and collections (CUSTOMER, PRODUCT) and its corresponding documents.
+==========================================================================================================================
+
+> use invoice
+switched to db invoice
+> db.createCollection("customer")
+{ "ok" : 1 }
+> show collections
+customer
+> db.createCollection("product")
+{ "ok" : 1 }
+
+ db.customer.insert({"Name":"Ameena","city":"thrissur","phno":"8547344533","age":23})
+WriteResult({ "nInserted" : 1 })
+> db.customer.insert({"Name":"sellu","city":"calicut","phno":"7547344578","age":22})
+WriteResult({ "nInserted" : 1 })
+db.customer.insert({"Name":"ramsi","city":"eranakulam","phno":"7547344578","age":21})
+WriteResult({ "nInserted" : 1 })
+> db.customer.insert({"Name":"aleena","city":"palakad","phno":"7547344578","age":23})
+WriteResult({ "nInserted" : 1 })
+  
+  
+> db.product.insertMany([{"pname":"pen","price":"10"},{"pname":"book","price":"50"},{"pname":"pencil","price":"5"},{"pname":"box","price":"100"}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("6489851e05de438b28c87249"),
+		ObjectId("6489851e05de438b28c8724a"),
+		ObjectId("6489851e05de438b28c8724b"),
+		ObjectId("6489851e05de438b28c8724c")
+	]
+}
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+2. Write a MongoDB query to find all documents from the collection CUSTOMER 
+============================================================================
+
+> db.customer.find().pretty()
+{
+	"_id" : ObjectId("6489838705de438b28c87244"),
+	"Name" : "Ameena",
+	"city" : "thrissur",
+	"phno" : "8547344533",
+	"age" : 23
+}
+{
+	"_id" : ObjectId("648983d005de438b28c87246"),
+	"Name" : "sellu",
+	"city" : "calicut",
+	"phno" : "7547344578",
+	"age" : 22
+}
+{
+	"_id" : ObjectId("648983f605de438b28c87247"),
+	"Name" : "ramsi",
+	"city" : "eranakulam",
+	"phno" : "7547344578",
+	"age" : 21
+}
+{
+	"_id" : ObjectId("6489844a05de438b28c87248"),
+	"Name" : "aleena",
+	"city" : "palakad",
+	"phno" : "7547344578",
+	"age" : 23
+}
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+3.Write a MongoDB query to update the city in the collection CUSTOMER
+=====================================================================
+
+}
+> db.customer.update({city:"palakad"},{$set:{city:"alappuzha"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.customer.find().pretty()
+{
+	"_id" : ObjectId("6489838705de438b28c87244"),
+	"Name" : "Ameena",
+	"city" : "thrissur",
+	"phno" : "8547344533",
+	"age" : 23
+}
+{
+	"_id" : ObjectId("648983d005de438b28c87246"),
+	"Name" : "sellu",
+	"city" : "calicut",
+	"phno" : "7547344578",
+	"age" : 22
+}
+{
+	"_id" : ObjectId("648983f605de438b28c87247"),
+	"Name" : "ramsi",
+	"city" : "eranakulam",
+	"phno" : "7547344578",
+	"age" : 21
+}
+{
+	"_id" : ObjectId("6489844a05de438b28c87248"),
+	"Name" : "aleena",
+	"city" : "alappuzha",
+	"phno" : "7547344578",
+	"age" : 23
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+4.Write a MongoDB query to delete the first matched document whose city is “Calicut”.
+====================================================================================
+
+> db.customer.deleteOne({"city":"calicut"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.customer.find().pretty()
+{
+	"_id" : ObjectId("6489838705de438b28c87244"),
+	"Name" : "Ameena",
+	"city" : "thrissur",
+	"phno" : "8547344533",
+	"age" : 23
+}
+{
+	"_id" : ObjectId("648983f605de438b28c87247"),
+	"Name" : "ramsi",
+	"city" : "eranakulam",
+	"phno" : "7547344578",
+	"age" : 21
+}
+{
+	"_id" : ObjectId("6489844a05de438b28c87248"),
+	"Name" : "aleena",
+	"city" : "alappuzha",
+	"phno" : "7547344578",
+	"age" : 23
+}
+
+
+
+
