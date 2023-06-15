@@ -1,0 +1,78 @@
+                                        Assignment 6 - NoSQL – Administration
+                                         *************************************
+                                         
+                                         
+ 1) Write a mongoDB query to create a user "CUSTOMER1" and grant the read role in the invoice database.
+ 
+ > use admin
+switched to db admin
+> db.createUser({user:"customer1",pwd:"abcd",roles:[{role:"read",db:"invoice"}]})
+Successfully added user: {
+	"user" : "customer1",
+	"roles" : [
+		{
+			"role" : "read",
+			"db" : "invoice"
+		}
+	]
+}
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+2.Write a MongoDB query to create the backup for the INVOICE database.
+
+mongodump --db invoice
+2023-06-15T15:28:34.899+0530	writing invoice.product to 
+2023-06-15T15:28:34.908+0530	writing invoice.customer to 
+2023-06-15T15:28:34.908+0530	done dumping invoice.product (4 documents)
+2023-06-15T15:28:34.908+0530	done dumping invoice.customer                                        
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+3.Write a MongoDB query to restore a particular database or a collection
+
+> use invoice
+switched to db invoice
+> db.dropDatabase()
+{ "dropped" : "invoice", "ok" : 1 }
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> 
+[2]+  Stopped                 mongo
+ksb@ksb-Lenovo-Product:~$ mongorestore --db invoice dump/invoice
+2023-06-15T15:31:48.244+0530	the --db and --collection args should only be used when restoring from a BSON file. Other uses are deprecated and will not exist in the future; use --nsInclude instead
+2023-06-15T15:31:48.244+0530	building a list of collections to restore from dump/invoice dir
+2023-06-15T15:31:48.244+0530	reading metadata for invoice.customer from dump/invoice/customer.metadata.json
+2023-06-15T15:31:48.245+0530	reading metadata for invoice.product from dump/invoice/product.metadata.json
+2023-06-15T15:31:48.439+0530	restoring invoice.customer from dump/invoice/customer.bson
+2023-06-15T15:31:48.574+0530	restoring invoice.product from dump/invoice/product.bson
+2023-06-15T15:31:48.575+0530	no indexes to restore
+2023-06-15T15:31:48.575+0530	finished restoring invoice.customer (3 documents)
+2023-06-15T15:31:48.575+0530	no indexes to restore
+2023-06-15T15:31:48.575+0530	finished restoring invoice.product (4 documents)
+2023-06-15T15:31:48.575+0530	done
+ksb@ksb-Lenovo-Product:~$ mongo
+MongoDB shell version v3.6.0
+connecting to: mongodb://127.0.0.1:27017
+MongoDB server version: 3.6.0
+Server has startup warnings: 
+2023-06-15T14:18:27.835+0530 I STORAGE  [initandlisten] 
+2023-06-15T14:18:27.835+0530 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2023-06-15T14:18:27.835+0530 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2023-06-15T14:18:31.278+0530 I CONTROL  [initandlisten] 
+2023-06-15T14:18:31.278+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2023-06-15T14:18:31.278+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2023-06-15T14:18:31.278+0530 I CONTROL  [initandlisten] 
+> show dbs
+admin    0.000GB
+config   0.000GB
+invoice  0.000GB
+local    0.000GB
+> 
